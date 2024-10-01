@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            background-color: #121212;
+            /* Darker background */
+            color: #fff;
+            /* White text for contrast */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #222;
+            /* Dark background for form container */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            /* Subtle shadow for depth */
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: #ffcc00;
+            /* Yellow heading */
+        }
+
+        .form-container label {
+            font-weight: bold;
+            /* Bold labels */
+        }
+
+        .form-container input {
+            width: calc(100% - 22px);
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            /* Darker input borders */
+            background-color: #1a1a1a;
+            /* Darker background for inputs */
+            color: #ddd;
+            /* Light gray text in inputs */
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s, box-shadow 0.3s;
+            /* Smooth transition for focus effect */
+        }
+
+        .form-container input:focus {
+            background-color: #333;
+            /* Slightly lighter background on focus */
+            box-shadow: 0 0 8px #ffcc00, inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            /* Yellow glow and inner shadow on focus */
+            outline: none;
+        }
+
+        .form-container input::placeholder {
+            color: #777;
+            /* Lighter gray for placeholders */
+        }
+
+        .form-container input[type="submit"] {
+            background-color: #4CAF50;
+            /* Green submit button */
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #45a049;
+            /* Slightly darker green on hover */
+            transform: scale(1.05);
+            /* Slight zoom on hover */
+        }
+
+        .result {
+            font-size: 1.5em;
+            color: #4CAF50;
+            /* Green text for results */
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Media Queries for Responsiveness */
+
+        @media only screen and (max-width: 768px) {
+
+            /* For tablets */
+            .form-container {
+                padding: 20px;
+                max-width: 90%;
+                /* Adjust width for smaller screens */
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+
+            /* For mobile phones */
+            .form-container {
+                padding: 15px;
+                max-width: 100%;
+                /* Full-width form on mobile */
+            }
+
+            .form-container input {
+                width: 100%;
+                /* Full-width inputs on mobile */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Car Price Prediction</h2>
+        <form action="/car_price_predict" method="post">
+            <label for="Mileage">Mileage:</label>
+            <input type="number" name="Mileage" step="0.01" placeholder="Enter mileage" required>
+
+            <label for="Age">Car Age (years):</label>
+            <input type="number" name="Age" placeholder="Enter car age" required>
+
+            <input type="submit" value="Predict">
+        </form>
+
+        {% if prediction_text %}
+        <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
